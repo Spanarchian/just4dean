@@ -44,11 +44,11 @@ export class MyApp {
             {title: 'Feedback', component: FeedbackPage, icon: 'mail'},
             {title: 'Login', component: LoginPage, icon: 'people'},
             {title: 'Sign up', component: SignUpPage, icon: 'people'},
+            {title: 'Log out', component: LoginPage, icon: 'people'},
         ];
 
         this.accountMenuItems = [
             {title: 'My Account', component: WelcomePage, icon: 'ios-contact'},
-            {title: 'Logout', component: WelcomePage, icon: 'log-out'},
         ];
 
         this.helpMenuItems = [

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { WelcomePage } from '../welcome/welcome';
+import { AboutPage } from '../about/about';
+
 
 
 /**
@@ -17,23 +20,29 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class LoginPage {
 
-    user = {} as User;
+  user = {} as User;
 
   constructor(private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
   }
 
-async login (user:User) {
-  try { 
-    const result =  this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
-    console.log(result);
-} 
-catch (e) {
-  console.error(e);
-}
-}
-signup () {
-  this.navCtrl.push("sign-up");
-}
-}
+  async login(user: User) {
+    try {
+      const result = this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password);
+      if (result) {
+        this.navCtrl.push(WelcomePage);
+      }
+      console.log(result);
+    }
+    catch (e) {
+      console.error(e);
+    }
+  }
+  signup() {
+    this.navCtrl.push(AboutPage);
+  }
 
-
+  logout() {
+    this.afAuth.auth.signOut();
+    this.navCtrl.push(WelcomePage);
+  }
+}

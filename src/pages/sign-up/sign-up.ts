@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth} from 'angularfire2/auth';
+import { AboutPage } from '../about/about';
 
 /**
  * Generated class for the SignUpPage page.
@@ -9,7 +10,7 @@ import { AngularFireAuth} from 'angularfire2/auth';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+
 @Component({
   selector: 'page-sign-up',
   templateUrl: 'sign-up.html',
@@ -23,10 +24,13 @@ export class SignUpPage {
 async signup (user: User) {
   try {
   const result = this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+  if (result) {
+    this.navCtrl.push(AboutPage);
   console.log(result);
 }
-catch (e) {
-  console.error(e);
-}
-}
+    }
+  catch (e) {
+    console.error(e);
+  }
+  }
 }
