@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { SignUpPage } from '../sign-up/sign-up';
 
 
 /**
@@ -32,7 +33,7 @@ catch (e) {
 }
 }
 signup () {
-  this.navCtrl.push("sign-up");
+  this.navCtrl.push(SignUpPage);
 }
 }
 
