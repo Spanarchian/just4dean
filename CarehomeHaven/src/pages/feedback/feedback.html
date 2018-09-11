@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    <ion-title>Feedback</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <form [formGroup]="feedbackForm" (ngSubmit)="sendEmail()">
+      <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input [formControl]="feedbackForm.controls['email']"
+              name="email" type="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Full Name</ion-label>
+            <ion-input [formControl]="feedbackForm.controls['name']"
+                name="name" type="name"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label floating>Message</ion-label>
+              <ion-input [formControl]="feedbackForm.controls['message']"
+                  name="message" type="message"></ion-input>
+            </ion-item>
+            <ion-row>
+                <ion-col text-center>
+                  <button ion-button block color="primary" type="submit">
+                    Submit
+                  </button>
+                  <ion-col *ngIf="successMessage" class="alert alert-success">{{successMessage}}</ion-col>
+                  <ion-col *ngIf="successError" class="alert alert-warning">{{errorMessage}}</ion-col>
+                  <ion-col class="loader" *ngIf="sendingEmail"></ion-col>
+                </ion-col>
+              </ion-row>
+  </form>
+
+</ion-content>
